@@ -1,0 +1,168 @@
+{% extends 'main.html' %}
+{% block main %}
+<div class="row">
+	<div class="column" style=width:25%>
+		<a href="../{{project_id}}">Back</a>
+	</div>
+	<div class="column" style=width:50%>
+		<h2>Manage Project</h2>
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" data-bs-toggle="tab" href="#users" aria-selected="false" role="tab" tabindex="-1">Users</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" data-bs-toggle="tab" href="#clients" aria-selected="false" role="tab">Clients</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" data-bs-toggle="tab" href="#groups" aria-selected="false" tabindex="-1" role="tab">Groups</a>
+			</li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade" id="users" role="tabpanel">
+				<div class="accordion" id="accordionUser">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingUserOne">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserOne" aria-expanded="true" aria-controls="collapseUserOne">
+								Add Users
+							</button>
+						</h2>
+						<div id="collapseUserOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionUser">
+							<div class="accordion-body">
+								<p>List project users here</p>
+								<form action="{{request.path}}" method="POST">
+									{{ au_form.csrf_token }}
+									<label for="exampleSelect1" class="form-label mt-4">Available Users</label>
+									{{au_form.users(class_="form-select")}}
+									<pre></pre>
+									{{au_form.pau_submit(class_="btn btn-primary")}}
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserTwo" aria-expanded="false" aria-controls="collapseUserTwo">
+								Remove Users
+							</button>
+						</h2>
+						<div id="collapseUserTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionUser">
+							<div class="accordion-body">
+								<p>List users here</p>
+								<form action="{{request.path}}" method="POST">
+									{{ ru_form.csrf_token }}
+									<label for="exampleSelect1" class="form-label mt-4">Users</label>
+									{{ru_form.users(class_="form-select")}}
+									<pre></pre>
+									{{ru_form.pru_submit(class_="btn btn-primary")}}
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingThree">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserThree" aria-expanded="false" aria-controls="collapseUserThree">
+								Add Manager
+							</button>
+						</h2>
+						<div id="collapseUserThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionUser">
+							<div class="accordion-body">
+								<p>List managers here</p>
+								<form action="{{request.path}}" method="POST">
+									{{ am_form.csrf_token }}
+									<label for="exampleSelect1" class="form-label mt-4">Available Users</label>
+									{{am_form.users(class_="form-select")}}
+									<pre></pre>
+									{{am_form.pam_submit(class_="btn btn-primary")}}
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="clients" role="tabpanel">
+				<pre></pre>
+				<div class="accordion" id="accordionClient">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClientOne" aria-expanded="true" aria-controls="collapseClientOne">
+								Remove Clients
+							</button>
+						</h2>
+						<div id="collapseClientOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionClient">
+							<div class="accordion-body">
+								<form action="{{request.path}}" method="POST">
+									{{ rc_form.csrf_token }}
+									<label for="exampleSelect1" class="form-label mt-4">Clients</label>
+									{{rc_form.clients(class_="form-select")}}
+<!--
+									<label for="exampleSelect1" class="form-label mt-4">Send Delete Signal?</label>
+									<div class="form-check form-switch">
+										rc_form.send_delete(class_="form-check-input")
+									</div>
+-->
+									<pre></pre>
+									{{rc_form.prc_submit(class_="btn btn-primary")}}
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="groups" role="tabpanel">
+				<div class="accordion" id="accordionGroup">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGroupOne" aria-expanded="true" aria-controls="collapseGroupOne">
+								Create Group
+							</button>
+						</h2>
+						<div id="collapseGroupOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGroup">
+							<div class="accordion-body">
+								<form action="{{request.path}}" method="POST">
+									{{ cg_form.csrf_token }}
+									<label for="exampleSelect1" class="form-label mt-4">Clients</label>
+									{{cg_form.clients(class_="form-select")}}
+									<label for="exampleSelect1" class="form-label mt-4">Group Name</label>
+									{{cg_form.group_name(class_="form-control",placeholder="Enter name here")}}
+									<pre></pre>
+									{{cg_form.pcg_submit(class_="btn btn-primary")}}
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGroupTwo" aria-expanded="false" aria-controls="collapseGroupTwo">
+								<i>Edit Group</i>
+							</button>
+						</h2>
+						<div id="collapseGroupTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGroup">
+							<div class="accordion-body">
+								<p><i><small>Not Yet Implemented</small></i></p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+							<h2 class="accordion-header" id="headingThree">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGroupThree" aria-expanded="false" aria-controls="collapseGroupThree">
+								Remove Group
+							</button>
+						</h2>
+						<div id="collapseGroupThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGroup">
+							<div class="accordion-body">
+								<form action="{{request.path}}" method="POST">
+									{{ rg_form.csrf_token }}
+									<label for="exampleSelect1" class="form-label mt-4">Groups</label>
+									{{rg_form.groups(class_="form-select")}}
+									<pre></pre>
+									{{rg_form.prg_submit(class_="btn btn-primary")}}
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'main.html' %}
+{% block main %}
+<div>
+	<a><img src="../static/graf.png" height=200 width=100%></a>
+</div>
+<div class="row">
+	<div class="column" style=width:25%>
+		<p><a href="/index">Back</a></p>
+		<a href="./{{project_id}}/manage">Manage Project</a>
+	</div>
+	<div class="column" style=width:50%>
+		<h2>Project {{project_id}}</h2>
+		<ul class="nav nav-tabs" role="tablist">
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#generate" aria-selected="false" tabindex="-1" role="tab">Generate</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#command" aria-selected="true" role="tab">Command</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#clients" aria-selected="false" tabindex="-1" role="tab">Clients</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#logs" aria-selected="false" tabindex="-1" role="tab">Logs</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#configure" aria-selected="false" tabindex="-1" role="tab">Configure</a>
+		  </li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+		  <div class="tab-pane fade" id="generate" role="tabpanel">
+			<p>Payload</p>
+			<p>Dropper</p>
+			<p>Static UUID?</p>
+			<p>Listeners</p>
+			<p>Persistence On?</p>
+			<p>Default Read Time</p>
+			<p>Default Execute Time</p>
+			<p>Default Log Time</p>
+		  </div>
+		  <div class="tab-pane fade" id="command" role="tabpanel">
+			<div class="form-group">
+				<form action="{{request.path}}" method="POST">
+					{{ uc_form.csrf_token }}
+					<label for="exampleSelect1" class="form-label mt-4">Client</label>
+					{{uc_form.target(class_="form-select")}}
+					<!-- probably should have seperate group select -->
+					<p><small>You can select multiple entries</small></p>
+					<label for="exampleSelect1" class="form-label mt-4">Type</label>
+					{{uc_form.command_type(class_="form-select")}}
+					<label class="col-form-label mt-4" for="inputDefault">Command</label>
+					{{uc_form.command(class_="form-control",placeholder="Enter command here")}}
+					<pre></pre>
+					{{uc_form.uc_submit(class_="btn btn-primary")}}
+				</form>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="clients" role="tabpanel">
+				<legend class="mt-4">Clients</legend>
+				<table class="table table-hover">
+				  <thead>
+					<tr>
+					  <th scope="col">ID</th>
+					  <th scope="col">Name</th>
+					  <th scope="col">IP Address</th>
+					  <th scope="col">OS</th>
+					  <th scope="col">Ping</th>
+					</tr>
+				  </thead>
+				  {% for v in clients %}
+				  <thead>
+					<tr>
+					  <!--change logs to list so [::-1] can be used-->
+					  <!-- scroll -->
+					  <td>{{v.id[0:8]}}...</td>
+					  <td>{{v.client_name}}</td>
+					  <td>{{v.client_ip}}</td>
+					  <td>{{v.client_os}}</td>
+					  <td>{{v.client_ping}}</td>
+					</tr>
+				  </thead>
+				  {% endfor %}
+				</table>
+				<legend class="mt-4">Groups</legend>
+				<table class="table table-hover">
+				  <thead>
+					<tr>
+					  <th scope="col">ID</th>
+					  <th scope="col">Name</th>
+					  <th scope="col">Members</th>
+					</tr>
+				  </thead>
+				  <!-- add scrolling -->
+				  {% for q in groups %}
+				  <thead>
+					<tr>
+					  <td>{{q.id}}</td>
+					  <td>{{q.group_name}}</td>
+					  <td>{{q.group_members}}</td>
+					</tr>
+				  </thead>
+				  {% endfor %}
+				</table>
+		  </div>
+		  <div class="tab-pane fade" id="logs" role="tabpanel">
+			<table class="table table-hover">
+			  <thead>
+				<tr>
+				  <th scope="col">ID</th>
+				  <th scope="col">Client</th>
+				  <th scope="col">Input</th>
+				  <th scope="col">Output</th>
+				  <th scope="col">IP Address</th>
+				</tr>
+			  </thead>
+			  {% for x in logs %}
+			  <thead>
+				<tr>
+				  <!--change logs to list so [::-1] can be used-->
+				  <!-- logs should hyperlink to api endpoint so full output can be read -->
+				  <!-- scroll -->
+				  <td>{{x.id}}</td>
+				  <td>{{x.log_client_id[0:8]}}...</td>
+				  <td>{{x.log_cmd_input}}</td>
+				  <td><a href="/api/logs/{{x.id}}" target="_blank" rel="noreferrer noopener">{{x.log_cmd_output[0:100]}}</a></td>
+				  <td>ip</td>
+				</tr>
+			  </thead>
+			  {% endfor %}
+			</table>
+		  </div>
+		  <div class="tab-pane fade" id="configure" role="tabpanel">
+			<div class="form-group">
+				<form action="/configure" method="POST">
+					<label for="exampleSelect2" class="form-label mt-4">Clients</label>
+					<select multiple class="form-select" id="exampleSelect2" name="client">
+						<optgroup label="Groups">
+							<option>testest</option>
+						<optgroup label="Clients">
+							<option>testesttest</option>
+					</select>
+					<p><small>You can select multiple entries</small></p>
+					<!-- type=configure -->
+					<label class="col-form-label mt-4" for="inputDefault">Settings</label>
+					<!--settings, toggle switches, forms-->
+					<pre></pre>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		  </div>
+		  
+		</div>
+	</div>
+</div>
+{% endblock %}

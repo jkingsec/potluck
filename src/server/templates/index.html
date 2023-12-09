@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block main %}
+<div class="row">
+	<div class="column" style=width:25%>
+		<p><a href="/user">User Settings</a></p>
+		<a href="/admin">Admin Panel</a>
+		<!--MOVE THIS TO NAVBAR-->
+	</div>
+	<div class="column" style=width:50%>
+		<h1>Main Page</h1>
+		<hr>
+		<h2>Projects</h2>
+		<div class="list-group">
+		{% for x in projects%}
+			<a href="/project/{{x.id}}" class="list-group-item list-group-item-action">Project {{x.id}}</a>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

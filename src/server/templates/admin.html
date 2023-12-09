@@ -1,0 +1,238 @@
+{% extends 'main.html' %}
+{% block main %}
+<div class="row">
+	<div class="column" style=width:25%>
+		<a href="/index">Back</a>
+	</div>
+	<div class="column" style=width:50%>
+		<h2>Manage Server</h2>
+		<ul class="nav nav-tabs" role="tablist">
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#users" aria-selected="false" role="tab" tabindex="-1">Users</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#projects" aria-selected="false" role="tab">Projects</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#assets" aria-selected="false" tabindex="-1" role="tab">Assets</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#logs" aria-selected="false" tabindex="-1" role="tab">Logs</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#settings" role="tabe" aria-haspopup="true" aria-expanded="false"><i>Settings</i></a>
+		  </li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+		  <div class="tab-pane fade" id="users" role="tabpanel">
+			<div class="accordion" id="accordionUser">
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserOne" aria-expanded="true" aria-controls="collapseUserOne">
+					<i>Edit User</i>
+				  </button>
+				</h2>
+				<div id="collapseUserOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionUser">
+				  <div class="accordion-body">
+					<i><small>Yet to be implemented</small></i>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingTwo">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserTwo" aria-expanded="false" aria-controls="collapseUserTwo">
+					<i>Reset User Password</i>
+				  </button>
+				</h2>
+				<div id="collapseUserTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionUser">
+				  <div class="accordion-body">
+					<i><small>Yet to be implemented (if at all)</small></i>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingThree">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserThree" aria-expanded="false" aria-controls="collapseUserThree">
+					Remove User
+				  </button>
+				</h2>
+				<div id="collapseUserThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionUser">
+				  <div class="accordion-body">
+					<form action="{{request.path}}" method="POST">
+						{{ aru_form.csrf_token }}
+						<label for="exampleSelect1" class="form-label mt-4">Users</label>
+						{{aru_form.users(class_="form-select")}}
+						<pre></pre>
+						{{aru_form.aru_submit(class_="btn btn-primary")}}
+					</form>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="projects" role="tabpanel">
+			<div class="accordion" id="accordionProject">
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectOne" aria-expanded="true" aria-controls="collapseProjectOne">
+					Create Project
+				  </button>
+				</h2>
+				<div id="collapseProjectOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionProject">
+				  <div class="accordion-body">
+					<form action="{{request.path}}" method="POST">
+						{{ acp_form.csrf_token }}
+						<label for="exampleSelect1" class="form-label mt-4">Name</label>
+						{{acp_form.project_name(class_="form-control",placeholder="Enter name here")}}
+						<label for="exampleSelect1" class="form-label mt-4">Users</label>
+						{{acp_form.project_users(class_="form-select")}}
+<!--
+						<label for="exampleSelect1" class="form-label mt-4">Managers</label>
+						acp_form.project_managers(class_="form-select")
+-->
+						<label for="exampleSelect1" class="form-label mt-4">Listeners</label>
+						{{acp_form.project_listeners(class_="form-select")}}
+						<pre></pre>
+						{{acp_form.acp_submit(class_="btn btn-primary")}}
+					</form>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingTwo">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectTwo" aria-expanded="false" aria-controls="collapseProjectTwo">
+					<i>Edit Project</i>
+				  </button>
+				</h2>
+				<div id="collapseProjectTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionProject">
+				  <div class="accordion-body">
+					<i><small>Yet to be implemented</small></i>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingThree">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectThree" aria-expanded="false" aria-controls="collapseProjectThree">
+					Add Project Manager
+				  </button>
+				</h2>
+				<div id="collapseProjectThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionProject">
+				  <div class="accordion-body">
+					<form action="{{request.path}}" method="POST">
+						{{ pam_form.csrf_token }}
+						<label for="exampleSelect1" class="form-label mt-4">Project</label>
+						{{pam_form.project_id(class_="form-select")}}
+						<label for="exampleSelect1" class="form-label mt-4">Users</label>
+						{{pam_form.users(class_="form-select")}}
+						<pre></pre>
+						{{pam_form.pam_submit(class_="btn btn-primary")}}
+					</form>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingFour">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectFour" aria-expanded="false" aria-controls="collapseProjectFour">
+					Remove Project
+				  </button>
+				</h2>
+				<div id="collapseProjectFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionProject">
+				  <div class="accordion-body">
+					<form action="{{request.path}}" method="POST">
+						{{ arp_form.csrf_token }}
+						<label for="exampleSelect1" class="form-label mt-4">Project</label>
+						{{arp_form.project_id(class_="form-select")}}
+						<pre></pre>
+						{{arp_form.arp_submit(class_="btn btn-primary")}}
+					</form>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="assets" role="tabpanel">
+			<div class="accordion" id="accordionAssets">
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssetsOne" aria-expanded="true" aria-controls="collapseAssetsOne">
+					Remove Listener
+				  </button>
+				</h2>
+				<div id="collapseAssetsOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionAssets">
+				  <div class="accordion-body">
+					<form action="{{request.path}}" method="POST">
+						{{ arl_form.csrf_token }}
+						<label for="exampleSelect1" class="form-label mt-4">Listeners</label>
+						{{arl_form.listeners(class_="form-select")}}
+						<pre></pre>
+						{{arl_form.arl_submit(class_="btn btn-primary")}}
+					</form>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingTwo">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssetsTwo" aria-expanded="false" aria-controls="collapseAssetsTwo">
+					Clear Orphaned Clients
+				  </button>
+				</h2>
+				<div id="collapseAssetsTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionAssets">
+				  <div class="accordion-body">
+					<p class="text-secondary">This will shutdown and remove all clients that are not associated with a project. BE CAREFUL WHEN USING THIS!</p>
+					<form action="{{request.path}}" method="POST">
+						{{ arl_form.csrf_token }}
+						<pre></pre>
+						{{acoc_form.acoc_submit(class_="btn btn-primary")}}
+					</form>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="logs" role="tabpanel">
+			<p>Display logs and filter here</p>
+		  </div>
+		  <div class="tab-pane fade" id="settings" role="tabpanel">
+			<div class="accordion" id="accordionSettings">
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSettingsOne" aria-expanded="true" aria-controls="collapseSettingsOne">
+					Accordion Item #1
+				  </button>
+				</h2>
+				<div id="collapseSettingsOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionSettings">
+				  <div class="accordion-body">
+					<i><small>Yet to be implemented</small></i>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingTwo">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSettingsTwo" aria-expanded="false" aria-controls="collapseSettingsTwo">
+					Accordion Item #2
+				  </button>
+				</h2>
+				<div id="collapseSettingsTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSettings">
+				  <div class="accordion-body">
+					<i><small>Yet to be implemented</small></i>
+				  </div>
+				</div>
+			  </div>
+			  <div class="accordion-item">
+				<h2 class="accordion-header" id="headingThree">
+				  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSettingsThree" aria-expanded="false" aria-controls="collapseSettingsThree">
+					Accordion Item #3
+				  </button>
+				</h2>
+				<div id="collapseSettingsThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionSettings">
+				  <div class="accordion-body">
+					<i><small>Yet to be implemented</small></i>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
