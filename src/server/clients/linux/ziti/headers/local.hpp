@@ -13,7 +13,7 @@ class Potlocal
     std::string passCommand(std::string command);
     void fingerprint();
     int getUID();
-    int checkDisk(std::string folder_path)
+    int checkDisk(std::string folder_path);
 }
 
 #endif
