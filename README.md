@@ -7,6 +7,8 @@ Potluck is a Linux-based C2 suite written in Python and C++. Includes a server, 
 - Redundant listening posts
 - Persistent client that runs in volitile memory
 ## To-do List
+- Separate bash code from client
+  - Have customizable scripts/routines on server
 - Windows client
 - Keylogger implant
 - Docker Support
