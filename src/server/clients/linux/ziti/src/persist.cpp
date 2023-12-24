@@ -24,7 +24,7 @@ bool Potpersist::checkPersist()
     //passCommand("if [ -d ~/.config/potluck/" + client_id + " ]; then echo 1; fi;");
 }
 //set persist
-void Potpersist::setPersist(auto arg_string)//get rid of auto
+void Potpersist::setPersist(char* arg_string)//get rid of auto
 {
     //remove references to "potluck"
     //"Do you have any idea how crazy you are?" "You mean the nature of this conversation?" "I mean the nature of you."
