@@ -28,7 +28,7 @@ extern std::string user_name;
 //hostname
 extern std::string host_name;
 //client name
-std::string client_name;
+extern std::string client_name;
 //UID
 extern int client_UID;
 //task array
@@ -41,9 +41,9 @@ extern std::string log_output;
 extern bool NO_VM;
 extern bool PERSIST_ON;//for testing purposes
 //enums
-extern enum TASK_STATUS { NOTASK, TASK, CONNERROR };
-extern enum TASK_TYPE {COMMAND, CONFIG, PERSIST, PING, SHUTDOWN, DELETE};
-extern enum RES_STATUS { RES_SUCCESS, RES_FAIL };
+enum TASK_STATUS { NOTASK, TASK, CONNERROR };
+enum TASK_TYPE {COMMAND, CONFIG, PERSIST, PING, SHUTDOWN, DELETE};
+enum RES_STATUS { RES_SUCCESS, RES_FAIL };
 //connection bool
 extern bool CONN_OK;
 
