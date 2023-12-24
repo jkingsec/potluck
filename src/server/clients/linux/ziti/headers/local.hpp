@@ -9,11 +9,11 @@
 class Potlocal
 {
   public:
-    std::string getTime();
-    std::string passCommand(std::string command);
-    void fingerprint();
-    int getUID();
-    int checkDisk(std::string folder_path);
-}
+    static std::string getTime();
+    static std::string passCommand(std::string command);
+    static void fingerprint();
+    static int getUID();
+    static int checkDisk(std::string folder_path);
+};
 
 #endif
