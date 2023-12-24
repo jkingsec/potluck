@@ -6,6 +6,8 @@
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
 
+#include "globals.hpp"
+
 namespace beast = boost::beast;
 namespace http = beast::http;
 
@@ -16,10 +18,10 @@ public:
     RES_STATUS res_stat; 
     http::response<http::basic_string_body<char>> res_body;
   };
-  res_struct  getRequest(std::string target);
-  res_struct postRequest(std::string target, std::string body_data);
-  void ping();
-  bool checkListener();
-}
+  static res_struct getRequest(std::string target);
+  static res_struct postRequest(std::string target, std::string body_data);
+  static void ping();
+  static bool checkListener();
+};
 
 #endif
