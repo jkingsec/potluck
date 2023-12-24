@@ -4,8 +4,8 @@
 class Potevade
 {
   public:
-    bool checkVM();
-    bool checkExpire();
-}
+    static bool checkVM();
+    static bool checkExpire();
+};
 
 #endif
