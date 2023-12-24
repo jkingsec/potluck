@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 
 #include "net.hpp"
+#include "local.hpp"
 #include "globals.hpp"
 
 namespace beast = boost::beast;
@@ -25,10 +26,10 @@ beast::flat_buffer buffer;
 
 ////NET FUNCS
 //get
-res_struct Potnet::getRequest(std::string target)
+Potnet::res_struct Potnet::getRequest(std::string target)
 {
 http::response<http::string_body> res;
-res_struct final_result;
+Potnet::res_struct final_result;
 try
     {
         auto results = resolver.resolve(host, port);
@@ -60,10 +61,10 @@ try
     std::cout << "getRequest done" << std::endl;
 }
 //post
-res_struct Potnet::postRequest(std::string target, std::string body_data)
+Potnet::res_struct Potnet::postRequest(std::string target, std::string body_data)
 {
 http::response<http::string_body> res; //if error, body is empty
-res_struct final_result;
+Potnet::res_struct final_result;
 try
     {
         auto results = resolver.resolve(host, port);
@@ -98,13 +99,13 @@ try
     std::cout << "postRequest done" << std::endl;
 }
 //ping
-auto Potnet::ping()
+void Potnet::ping()
 {
     //try/catch
     json ping_data;
     ping_data["client_name"] = client_name;
     ping_data["client_os"] = os_name;
-    ping_data["send_time"] = getTime();
+    ping_data["send_time"] = Potlocal::getTime();
     ping_data["client_settings"] = "{}";
     ping_data["project_id"] = project_id;
     postRequest(
@@ -125,7 +126,7 @@ bool Potnet::checkListener()
             host = listener.value()["host"];
             port = listener.value()["port"];
             std::cout << host + port << std::endl;
-            res_struct result = getRequest("/");
+            Potnet::res_struct result = getRequest("/");
             if ( result.res_stat == RES_SUCCESS && result.res_body.result() == http::status::ok)//this isn't working
             //if using a custom struct, have if SUCCESS && res.result() == http::status::ok
             {
