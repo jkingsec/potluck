@@ -7,9 +7,9 @@
 class Potpersist
 {
   public:
-    bool checkPersist();
-    void setPersist(auto arg_string);
-    void removePersist();
-}
+    static bool checkPersist();
+    static void setPersist(char* arg_string);
+    static void removePersist();
+};
 
 #endif
