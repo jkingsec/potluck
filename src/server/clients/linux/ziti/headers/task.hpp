@@ -12,10 +12,10 @@ using namespace nlohmann;
 class Pottask
 {
   public:
-    TASK_STATUS readTask();
-    void addLog(json json_object, std::string command_output);
-    void uploadLog();
-    TASK_TYPE switchTask(json input_task);
-}
+    static TASK_STATUS readTask();
+    static void addLog(json json_object, std::string command_output);
+    static void uploadLog();
+    static TASK_TYPE switchTask(json input_task);
+};
 
 #endif
