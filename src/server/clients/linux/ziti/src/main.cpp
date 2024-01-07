@@ -117,11 +117,12 @@ int main(int argc, char** argv)
                     Pottask::uploadLog();
                 }
                 //system checks, etc go here
-                sleep(15); //have this be a variable
+		//Potevade::checkExpire();
+                sleep(sleep_time); //have this be a variable
             }
             else if (current_task_state == CONNERROR)
             {
-                sleep(15); //have this be a variable
+                sleep(sleep_time); //have this be a variable
             }
         }
     }

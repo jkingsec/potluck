@@ -2,17 +2,22 @@
 {% block main %}
 <div class="row">
 	<div class="column" style=width:25%>
-		<p><a href="/user">User Settings</a></p>
-		<a href="/admin">Admin Panel</a>
-		<!--MOVE THIS TO NAVBAR-->
+		<div class="list-group">
+			<a href="/user" class="list-group-item list-group-item-action">User Settings</a>
+			{% if current_user.admin %}
+				<a href="/admin" class="list-group-item list-group-item-action">Admin Panel</a>
+			{% endif %}
+		</div>
 	</div>
 	<div class="column" style=width:50%>
-		<h1>Main Page</h1>
+		<h1>Welcome</h1>
 		<hr>
 		<h2>Projects</h2>
 		<div class="list-group">
-		{% for x in projects%}
-			<a href="/project/{{x.id}}" class="list-group-item list-group-item-action">Project {{x.id}}</a>
+		{% for x in projects_dict %}
+		{% if current_user.id in x['users'] or current_user.admin %}
+			<a href="/project/{{x['slug']}}" class="list-group-item list-group-item-action">{{x['name']}} <small>({{x['id'][0:8]}})</small></a>
+		{% endif %}
 		{% endfor %}
 	</div>
 </div>

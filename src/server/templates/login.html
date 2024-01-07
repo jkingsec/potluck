@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="row">
+	<div class="column" style=width:33%>
+	</div>
+	<div class="column" style=width:33%>
+		<img src="/static/logo.svg" width="75" height="75", style="margin-left:auto;margin-right:auto;display:block;">
+		<pre></pre>
+		<h2 style="text-align:center;">Potluck Login</h2>
+		<div class="form-group">
+			<form action="{{request.path}}" method="POST">
+				
+				{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-dismissible alert-primary">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                
+				
+				{{ ul_form.csrf_token }}
+				<label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+				{{ ul_form.ul_username(class_="form-control") }}
+				<label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+				{{ ul_form.ul_password(class_="form-control", type_="password", placeholder_="Password", autocomplete_="off") }}
+				<pre></pre>
+				{{ ul_form.ul_submit(class_="btn btn-primary") }}
+				<p class="text-secondary"><small>No login? <a href="../register">Register here</a></small></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

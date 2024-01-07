@@ -1,8 +1,7 @@
-#!/bin/python3
-
 from app import db
 from flask_login import UserMixin
 from datetime import datetime
+from uuid import uuid4
 
 #clients
 class _Client(db.Model):
@@ -54,12 +53,14 @@ class _Listener(db.Model):
 	id = db.Column(db.String, primary_key=True, unique=True, nullable=False)
 	listener_ip = db.Column(db.String, nullable=False)
 	listener_settings = db.Column(db.String, nullable=False)
+	listener_port = db.Column(db.Integer, nullable=False)
 	create_time = db.Column(db.String, nullable=False, default=datetime.utcnow().strftime('%d-%m-%Y %H:%M:%S'))
 	modify_time= db.Column(db.String)
 #project groups
 class _Project(db.Model):
-	id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
-	project_name = db.Column(db.String)
+	id = db.Column(db.String, unique=True, primary_key=True, nullable=False, default=str(uuid4()))
+	project_name = db.Column(db.String, unique=True, nullable=False)
+	project_slug = db.Column(db.String, unique=True, nullable=False)
 	project_users = db.Column(db.String)
 	project_managers = db.Column(db.String, default="[]")
 	#project_clients = db.Column(db.String)
@@ -68,3 +69,9 @@ class _Project(db.Model):
 	modify_time= db.Column(db.String)
 #server settings
 #class _Setting(db.Model):
+#stored payload
+class _Payload(db.Model):
+	id = db.Column(db.String, unique=True, primary_key=True, nullable=False)
+	file_name = db.Column(db.String, unique=True, nullable=False)
+	file_expire = db.Column(db.String, nullable=False)
+	create_time = db.Column(db.String, nullable=False, default=datetime.utcnow().strftime('%d-%m-%Y %H:%M:%S'))

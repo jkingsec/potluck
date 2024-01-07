@@ -231,7 +231,8 @@ class listenerDetail (Resource):
 			listener = _Listener(
 				id=listener_data['listener_id'],
 				listener_ip=request.remote_addr,
-				listener_settings=str(listener_data['listener_settings'])
+				listener_settings=str(listener_data['listener_settings']),
+				listener_port=listener_data['listener_port']
 			)
 			db.session.add(listener)
 		else:
@@ -239,6 +240,7 @@ class listenerDetail (Resource):
 			listener = db.session.execute(db.select(_Listener).filter_by(id=listener_id)).scalar()
 			listener.listener_ip = request.remote_addr
 			listener.listener_settings = str(listener_data['listener_settings'])
+			listener.listener_port=listener_data['listener_port']
 			listener.modify_time=datetime.utcnow().strftime('%d-%m-%Y %H:%M:%S')
 		db.session.commit()
 	def delete(self, listener_id):
@@ -262,7 +264,7 @@ class userIndex (Resource):
 		user = _User(
 			user_name=request.form['user_name'],
 			user_email=request.form['user_email'],
-			user_password=request.form['user_password']#hash before or after sending?
+			user_password=request.form['user_password']
 		)
 		db.session.add(user)
 		db.session.commit()
@@ -287,6 +289,10 @@ class userDetail (Resource):
 		user = db.session.execute(db.select(_User).filter_by(id=user_id)).scalar()
 		db.session.delete(user)
 		db.session.commit()
+
+class payloadDownload (Resource):
+	def get(self, pl_file_name):
+		return [open(f'payloads/{pl_file_name}', 'r').read()]
 
 class basicTest (Resource):
 	# curl -X POST -F 'data={"test": "curl"}' http://localhost:5000/api/test

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="row">
+	<div class="column" style=width:33%>
+	</div>
+	<div class="column" style=width:33%>
+		<h2 style="text-align:center;">Register Account</h2>
+		<div class="form-group">
+			<form action="{{request.path}}" method="POST">
+				
+				{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-dismissible alert-primary">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                
+				{{ ur_form.csrf_token }}
+				<label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+				{{ ur_form.ur_username(class_="form-control") }}
+				<label for="exampleInputEmail1" class="form-label mt-4">Email</label>
+				{{ ur_form.ur_email(class_="form-control") }}
+				<label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+				{{ ur_form.ur_password(class_="form-control", type_="password", placeholder_="Password", autocomplete_="off") }}
+				<label for="exampleInputPassword1" class="form-label mt-4">Confirm Password</label>
+				{{ ur_form.ur_cpassword(class_="form-control", type_="password", placeholder_="Confirm Password", autocomplete_="off") }}
+				<pre></pre>
+				{{ ur_form.ur_submit(class_="btn btn-primary") }}
+				<p class="text-secondary"><small>Already have an account? <a href="../login">Login here</a></small></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block main %}
+<div class="row">
+	<div class="column" style=width:25%>
+		<div class="list-group">
+			<a href="./{{project_slug}}" class="list-group-item list-group-item-action">Back</a>
+		</div>
+	</div>
+	<div class="column" style=width:8%></div>
+	<div class="column" style=width:33%>
+		<div class="form-group">
+			<fieldset>
+				<label for="Textarea" class="form-label mt-4">Payload</label>
+				<p><button id="copy_text" type="button" class="btn btn-primary" onclick="copyText()">Copy Text</button></p>
+				<textarea class="form-control" id="Textarea" type="text" rows="10" wrap="hard" readonly="">{{text_payload}}</textarea>
+				<script type="text/javascript">
+					function copyText(){
+						var copyText = document.getElementById("Textarea");
+						copyText.select();
+						copyText.setSelectionRange(0, 99999);
+						navigator.clipboard.writeText(copyText.value);
+						alert("Copied to clipboard!");
+					}
+				</script>
+			</fieldset>
+		</div>
+	</div>
+</div>
+{% endblock %}

