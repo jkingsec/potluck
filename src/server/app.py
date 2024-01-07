@@ -29,6 +29,9 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///potluck.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
+    if not os.path.exists('payloads'):
+        os.mkdir('payloads')
+
     login_manager.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db)
