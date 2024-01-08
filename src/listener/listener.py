@@ -16,9 +16,6 @@ server_port = "5000"
 listener_port = 5150
 listener_settings = {}
 
-####INCLUDE A TIME OUT IN CASE OF ERRORS
-#make a run file
-
 def ping():
 	ping_data = json.dumps(
 		{
@@ -73,8 +70,7 @@ def check_settings():
 			'ping_freq': setting_values.ping_freq,
 			'buffer_freq': setting_values.buffer_freq
 		}
-#implement request buffer
-#use server's public key to make listener traffic agnostic
+
 #curl -X POST -F 'data={"test": "proxy curl"}' http://localhost:5150/test
 #post('http://localhost:5150/test', data={'data':'{"test":"python"}'})
 
@@ -83,7 +79,6 @@ def index():
 	return ""
 @app.route('/<path:path>', methods=['GET','POST'])
 
-#clean this up blah blah blah
 def proxy(path):
 	try:
 		if request.method == "GET":
@@ -123,11 +118,9 @@ def proxy(path):
 				db.session.delete(buffer_entry) #something bad happening here
 				db.session.commit()
 				return ""
-		#stuff goes here
 		
 	except req_exceptions.ConnectionError or req_exceptions.TimeoutError as e:
 		#only try buffer send if requests.exceptions.ConnectionError or TimeOut, not 400 or 600
-		#background job?
 		print(f"Connection Error: ({e})\nWaiting to resend...")
 		return ""
 
@@ -142,7 +135,7 @@ def ping_job():
 	print('Server Pinged')
 	
 @scheduler.task('interval', id='buffer_job', minutes=15)#have this be a setting
-def buffer_job(): #could probably use some optimizing
+def buffer_job():
 	with app.app_context():
 		buffer_list = list(db.session.execute(db.select(_Buffer)))
 		if buffer_list:
@@ -172,14 +165,3 @@ if len(argv) == 2:
 if __name__ == '__main__':
 	scheduler.start()
 	app.run(debug=True, port=listener_port)# use_reloader=False if the double pings are too annoying
-
-#if request == GET:
-#	return request.content
-#elif request == POST:
-#	save_to_buffer
-#	try:
-#		get(post_buffer)
-#	except:
-#		pass or return timeout notice
-#if no activity for x and posts in buffer:
-#	get(post_buffer)
