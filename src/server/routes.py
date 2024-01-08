@@ -146,7 +146,7 @@ def register():
 	if request.method == "POST":
 		try:
 			if ur_form.ur_submit.data and ur_form.validate_on_submit():
-				
+
 				email = ur_form.ur_email.data
 				password = ur_form.ur_password.data
 				username = ur_form.ur_username.data

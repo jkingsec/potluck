@@ -1,0 +1,12 @@
+*.exe
+*.so
+*.out
+*.cbp
+*.layout
+*.db
+
+src/server/payloads/
+env/
+src/server/__pycache__/
+src/*/instance/
+src/server/migrations/

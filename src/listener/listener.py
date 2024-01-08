@@ -9,9 +9,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_apscheduler import APScheduler
 from requests import get, post
 from requests import exceptions as req_exceptions
+from sys import argv #for testing?
 
 server_domain = "http://localhost"
 server_port = "5000"
+listener_port = 5150
 listener_settings = {}
 
 ####INCLUDE A TIME OUT IN CASE OF ERRORS
@@ -21,7 +23,8 @@ def ping():
 	ping_data = json.dumps(
 		{
 			'listener_id': listener_settings['listener_id'],
-			'listener_settings': listener_settings
+			'listener_settings': listener_settings,
+			'listener_port': listener_port
 		}
 	)
 	try:
@@ -127,9 +130,6 @@ def proxy(path):
 		#background job?
 		print(f"Connection Error: ({e})\nWaiting to resend...")
 		return ""
-		
-
-
 
 #scheduler
 scheduler = APScheduler()
@@ -166,9 +166,12 @@ def buffer_job(): #could probably use some optimizing
 check_settings()
 ping()
 
+if len(argv) == 2:
+	listener_port = argv[1]
+
 if __name__ == '__main__':
 	scheduler.start()
-	app.run(debug=True, port=5150)# use_reloader=False if the double pings are too annoying
+	app.run(debug=True, port=listener_port)# use_reloader=False if the double pings are too annoying
 
 #if request == GET:
 #	return request.content
