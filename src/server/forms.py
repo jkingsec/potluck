@@ -91,6 +91,17 @@ class user_configure_client(FlaskForm):
 	def_ping_time = IntegerField()
 	acc_submit = SubmitField(u"Submit")
 
+class user_change_password(FlaskForm):
+	ucp_old_password = PasswordField()
+	ucp_new_password = PasswordField(validators=[InputRequired(), Length(8, 72)])
+	ucp_new_cpassword = PasswordField(
+		validators=[
+			InputRequired(),
+			Length(8, 72),
+			EqualTo("ucp_new_password", message="Passwords must match !")
+		]
+	)
+	ucp_submit = SubmitField(u"Change")
 
 ##Project Manager Forms
 class project_add_users(FlaskForm):

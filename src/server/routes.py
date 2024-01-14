@@ -62,6 +62,7 @@ from forms import (
 	user_generate_payload,
 	user_command,
 	user_configure_client,
+	user_change_password,
 	project_add_users,
 	project_remove_users,
 	project_add_manager,
@@ -377,7 +378,19 @@ def project_manage(project_slug):
 @app.route("/user", methods=['GET', 'POST'])
 @login_required
 def user_panel():
-	return render_template('user.html')
+	ucp_form = user_change_password()
+	if request.method == "POST":
+			try:
+				if ucp_form.ucp_submit.data and ucp_form.validate_on_submit():
+					if check_password_hash(current_user.user_password, ucp_form.ucp_old_password.data):
+						current_user.user_password=bcrypt.generate_password_hash(ucp_form.ucp_new_password.data)
+						db.session.commit()
+						#add success Flash here
+			except Exception as e:
+				print("Exception:",e)
+				#add Flash here
+				return redirect("/user")
+	return render_template('user.html', ucp_form=ucp_form)
 
 @app.route("/admin", methods=['GET', 'POST'])
 @login_required
