@@ -33,6 +33,7 @@
 ## Client
 
 - Add configuration function
+- Implement dynamic UUID generation
 - Improve persistence method
   - No local copy of binary
   - No use of Flock

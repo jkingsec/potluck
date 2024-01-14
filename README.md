@@ -1,5 +1,5 @@
 # Potluck
-Potluck is a Linux-focused C2 suite written in Python and C++. It's comprised of a server, listener, and client. 
+Potluck is a Linux-focused C2 suite written in Python and C++
 ## Features
 - User-friendly web interface
   - Custom payload generator
