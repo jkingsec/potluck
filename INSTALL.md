@@ -14,6 +14,7 @@ Potluck is still early in development, many features have yet to be fully implem
 6. Change the secret key in `app.py`
 7. Set up a virtual environment with
   - `sudo apt-get install python3.10-venv`
+  - `cd /opt/potluck`
   - `python3 -m venv potluck-env`
   - `source /opt/potluck/potluck-env/bin/activate`
 8. Install Python dependencies with `pip3 install -r /opt/potluck/requirements.txt`
@@ -35,6 +36,7 @@ Potluck is still early in development, many features have yet to be fully implem
 5. Assign ownership of the server with `sudo chown -R :potluck /opt/potluck` (or `sudo chown -R potluck:potluck /opt/potluck`)
 6. Set up a virtual environment with
   - `sudo apt-get install python3.10-venv`
+  - `cd /opt/potluck`
   - `python3 -m venv potluck-env`
   - `source /opt/potluck/potluck-env/bin/activate`
 7. Install Python dependencies with `pip3 install -r /opt/potluck/requirements.txt`
