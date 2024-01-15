@@ -31,7 +31,7 @@ Potluck is still early in development, many features have yet to be fully implem
 1. Download the repo using `git clone https://github.com/jkingsec/potluck.git`
 2. Move server to `/opt` with `sudo mv ~/potluck/src/listener /opt/potluck`
 3. Create Potluck group with `sudo groupadd potluck`
-4. Optionally, create a potluck user with `sudo useradd -g potluck potluck`
+4. Optionally, create a potluck user with `sudo useradd -g potluck potluck` or add the current user with `sudo usermod -aG potluck $USER`
 5. Assign ownership of the server with `sudo chown -R :potluck /opt/potluck` (or `sudo chown -R potluck:potluck /opt/potluck`)
 6. Set up a virtual environment with
   - `sudo apt-get install python3.10-venv`
