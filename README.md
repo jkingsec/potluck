@@ -1,4 +1,9 @@
-# Potluck
+﻿# Potluck
+
+<p align="center">
+  <img src="docs/images/potluck.png" height="30%" width="30%">
+</p>
+
 Potluck is a Linux-focused C2 suite written in Python and C++
 ## Features
 - User-friendly web interface
@@ -14,12 +19,15 @@ Potluck is a Linux-focused C2 suite written in Python and C++
   - Buffers log contents
 ## Requirements
 (Tested on Ubuntu 23.04)
-- python3 (see [requirments.txt](https://github.com/jkingsec/potluck/blob/main/src/server/requirements.txt) for a more indepth list)
+- python3 (see [requirments.txt](https://github.com/jkingsec/potluck/blob/main/src/server/requirements.txt) for a more in-depth list)
 - upx-ucl
 - libboost-all-dev
 - gcc, g++-multilib
 ## Quickstart
-For more in-depth instructions on how to use Potluck, please click [here](https://github.com/jkingsec/potluck/blob/main/INSTALL.md)
+For more in-depth instructions on how to install Potluck, please click [here](https://github.com/jkingsec/potluck/blob/main/INSTALL.md)
+
+For more in-depth usage instruction, please click [here](https://github.com/jkingsec/potluck/blob/main/HOWTO.md)
+
 - Install the server and at least one instance of the listener
 - Login as 'admin' using the default password 'potluck123'
 - Change the default password in the User settings menu
