@@ -22,6 +22,7 @@ Potluck is a Linux-focused C2 suite written in Python and C++
 - python3 (see [requirments.txt](https://github.com/jkingsec/potluck/blob/main/src/server/requirements.txt) for a more in-depth list)
 - upx-ucl
 - libboost-all-dev
+- nlohmann-json3-dev
 - gcc, g++-multilib
 ## Quickstart
 For more in-depth instructions on how to install Potluck, please click [here](https://github.com/jkingsec/potluck/blob/main/INSTALL.md)
