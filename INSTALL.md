@@ -32,7 +32,6 @@ Potluck is still early in development, many features have yet to be fully implem
 4. Optionally, create a potluck user with `sudo useradd -g potluck potluck`
 5. Assign ownership of the server with `sudo chown -R :potluck /opt/potluck` (or `sudo chown -R potluck:potluck /opt/potluck`)
 6. Set up a virtual environment with 
-  - `pip3 install venv`
   - `python3 -m venv potluck-env`
   - `source /opt/potluck/potluck-env/bin/activate`
 7. Install Python dependencies with `pip3 install -r /opt/potluck/requirements.txt`
