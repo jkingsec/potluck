@@ -20,7 +20,7 @@ Potluck is still early in development, many features have yet to be fully implem
 8. Install Python dependencies with `pip3 install -r /opt/potluck/requirements.txt`
   - If you need to install pip3, use `sudo apt-get install python3-pip` 
 9. Install system-wide requirements (tested on Ubuntu 23.04 and 22.04)
-  - `sudo apt-get install gcc g++-multilib libboost-all-dev upx-ucl && sudo apt-get update`
+  - `sudo apt-get install gcc g++-multilib libboost-all-dev nlohmann-json3-dev upx-ucl && sudo apt-get update`
 10. If the server instance is going to be exposed on a public network (highly not recommended), then it should be configured with a WSGI and proxy server. For more detailed instructions, please consult the [Gunicorn documentation](https://docs.gunicorn.org/en/stable/deploy.html). Otherwise, a simple test can be done by simply launching the runfile `run`
   - `cd /opt/potluck && ./run`
   - If you wish to test the server on a private network, append `--host=0.0.0.0` to the end of `run`. BE INCREDIBLY CAREFUL WHEN DOING THIS.
