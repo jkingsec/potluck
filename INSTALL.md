@@ -12,11 +12,11 @@ Potluck is still early in development, many features have yet to be fully implem
 4. Optionally, create a potluck user with `sudo useradd -g potluck potluck` or add the current user with `sudo usermod -aG potluck $USER`
 5. Assign ownership of the server with `sudo chown -R :potluck /opt/potluck` (or `sudo chown -R potluck:potluck /opt/potluck`)
 6. Change the secret key in `app.py`
-7. Set up a virtual environment with 
-  - `pip3 install venv`
+7. Set up a virtual environment with
   - `python3 -m venv potluck-env`
   - `source /opt/potluck/potluck-env/bin/activate`
 8. Install Python dependencies with `pip3 install -r /opt/potluck/requirements.txt`
+  - if you need to install pip3, use `sudo apt-get install python3-pip` 
 9. Install system-wide requirements (for Ubuntu 23.04)
   - `sudo apt-get install gcc g++-multilib libboost-all-dev upx-ucl && sudo apt-get update`
 10. If the server instance is going to be exposed on a public network (highly not recommended), then it should be configured with a WSGI and proxy server. For more detailed instructions, please consult the [Gunicorn documentation](https://docs.gunicorn.org/en/stable/deploy.html). Otherwise, a simple test can be done by simply launching the runfile `run`
