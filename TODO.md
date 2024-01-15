@@ -48,6 +48,7 @@
 
 ## Project
 
+- Create scary looking legal disclaimer to ward off lawsuit spirits
 - Create Docker images for server and listener
   - MySQL by default
   - Gunicorn for WSGI
@@ -55,3 +56,4 @@
   - Listener launches with script that takes in server address/port as arguments
 - SOCKS Support
 - Split listener/server/clients into separate repositories?
+- Rewrite entire server in Django without telling anyone
