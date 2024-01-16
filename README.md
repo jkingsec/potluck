@@ -30,9 +30,9 @@ Potluck is a Linux-focused C2 suite written in Python and C++
 - nlohmann-json3-dev
 - gcc, g++-multilib
 ## Quickstart
-For more in-depth instructions on how to install Potluck, please click [here](https://github.com/jkingsec/potluck/blob/main/INSTALL.md)
+For more instructions on how to install Potluck, please click [here](https://github.com/jkingsec/potluck/blob/main/INSTALL.md)
 
-For more in-depth usage instruction, please click [here](https://github.com/jkingsec/potluck/blob/main/HOWTO.md)
+For more usage instructions, please click [here](https://github.com/jkingsec/potluck/blob/main/HOWTO.md)
 
 - Install the server and at least one instance of the listener
 - Login as 'admin' using the default password 'potluck123'
