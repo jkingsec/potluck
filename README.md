@@ -24,7 +24,7 @@ Potluck is a Linux-focused C2 suite written in Python and C++
   - Buffers log contents
 ## Requirements
 (Tested on Ubuntu 23.04)
-- python3 (see [requirments.txt](https://github.com/jkingsec/potluck/blob/main/src/server/requirements.txt) for a more in-depth list)
+- python3 (see [requirements.txt](https://github.com/jkingsec/potluck/blob/main/src/server/requirements.txt) for a more in-depth list)
 - upx-ucl
 - libboost-all-dev
 - nlohmann-json3-dev
