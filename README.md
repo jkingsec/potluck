@@ -1,10 +1,13 @@
 ﻿# Potluck
 
 <p align="center">
-  <img src="docs/images/potluck.png" height="30%" width="30%">
+  <img src="docs/images/potluck.png" height="20%" width="20%">
 </p>
 
 Potluck is a Linux-focused C2 suite written in Python and C++
+<p align="center">
+  <img src="docs/images/gif/demo_full" height="40%" width="40%">
+</p>
 ## Features
 - User-friendly web interface
   - Custom payload generator
