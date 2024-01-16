@@ -9,10 +9,19 @@
 </p>
 
 2. As Admin, go into the Admin Panel and create a new project
-  - If other users have registered, add them to the project and make at least one a manager
 
 <p align="center">
   <img src="docs/images/gif/demo_2.gif">
+</p>
+
+  - If other users have registered, add them to the project and make at least one a manager
+
+<p align="center">
+  <img src="docs/images/gif/demo_3.gif">
+</p>
+
+<p align="center">
+  <img src="docs/images/gif/demo_4.gif">
 </p>
 
 3. In the project page, select the Generate tab. 
@@ -23,21 +32,16 @@
   - Sleep Time sets how long the client will wait until checking for new tasks.
   - Persistence Enabled sets a flag telling the client to immediately run its persistence routine at launch. While this routine works, it's still in an early stage of development.
   - Anti VM Enabled sets a flag that will cause the client to not run if it detects a hypervisor or signs of OS-level virtualization.
-
-<p align="center">
-  <img src="docs/images/gif/demo_3.gif">
-</p>
-
 4. After hitting Generate and waiting for the client to compile, the server with return the dropper command which the user can copy-paste.
 
 <p align="center">
-  <img src="docs/images/gif/demo_4.gif">
+  <img src="docs/images/gif/demo_5.gif">
 </p>
 
 5. When the client is spawned into the target's volatile memory, it will ping the listeners it had assigned to it. The project page might have to be refreshed for the dashboard to show up.
 
 <p align="center">
-  <img src="docs/images/gif/demo_5.gif">
+  <img src="docs/images/gif/demo_6.gif">
 </p>
 
 6. The user can now issue commands using the Command tab
@@ -48,10 +52,6 @@
     - Delete initiates the self-destruct and cleanup routines.
     - Shutdown simply causes the client to exit. If persistence hasn't been enabled, this is essentially the same as Delete.
     - *Configure has yet to be implemented*
-   
-<p align="center">
-  <img src="docs/images/gif/demo_6.gif">
-</p>
 
 7. When the client execute commands and returns logs to the server, these can be viewed both on the dashboard and under the Logs tab. To see a more detailed view of the entries, simply click on the links in the Output column to open an API link.
 
