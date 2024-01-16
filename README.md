@@ -38,7 +38,7 @@ For more usage instructions, please click [here](https://github.com/jkingsec/pot
 - Login as 'admin' using the default password 'potluck123'
 - Change the default password in the User settings menu
 - Create a project in the Admin panel
-- Create users in the Admin panel and assign them to the project
+- Assign users to the project in the Admin panel
 - Generate dropper scripts and payloads in the project menu
 - Infect your target!
 - Monitor client activity with the dashboard
