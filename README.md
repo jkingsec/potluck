@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="docs/images/potluck.png" height="20%" width="20%">
-</p>
- 
 # Potluck
+
+<p align="center">
+  <img src="docs/images/potluck.png" height="10%" width="10%">
+</p>
 
 <p align="center">
   <img src="docs/images/gif/demo_full.gif">
