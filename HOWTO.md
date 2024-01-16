@@ -14,7 +14,7 @@
   <img src="docs/images/gif/demo_2.gif">
 </p>
 
-3. , go into the Admin Panel and create a new project
+3. While still Admin, go into the Admin Panel and create a new project
 
 <p align="center">
   <img src="docs/images/gif/demo_3.gif">
