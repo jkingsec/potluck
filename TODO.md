@@ -30,7 +30,7 @@
 - Create route that accepts configuration changes from server
 - Stress test request buffer
 
-## Client
+## Client (Ziti)
 
 - Add configuration function
 - Implement dynamic UUID generation
@@ -45,6 +45,16 @@
   - Create respective PS-based dropper script
 - Create a MitM payload that logs passwords via .bash_rc
 - Add rootkit to future clients
+
+### Successor Client (Casserole)
+
+- Reduce unpacked size to under 200KB
+- Change task list format to phase out use of JSON
+- Reduce Boost usage to only network-related libraries if possible
+- Minimal hardcoded strings, IPs stored as integers
+- Find balance between using syscalls and pipe-based fingerprinting
+- Explore the in-memory usage of mutex and semaphores to improve persistence method
+- More thorough obfuscation of UPX usage (pack the packer?)
 
 ## Project
 
